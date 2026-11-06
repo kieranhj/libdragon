@@ -668,7 +668,7 @@ int Font::add_glyph(uint32_t cp, Image&& img, int xoff, int yoff, int xadv)
         return -1;
     }
 
-    tex_format_t tmem_fmt;
+    tex_format_t tmem_fmt=FMT_NONE;
     switch (fonttype) {
     case FONT_TYPE_MONO:
         if (img.fmt != FMT_I8) assert(!"glyph image must be I8 for monochrome fonts");
@@ -1281,7 +1281,7 @@ void Font::add_atlas(Image& img)
     LodePNGState state;
     lodepng_state_init(&state);
     state.encoder.auto_convert = false; // avoid automatic remapping of palette colors
-    LodePNGColorType ct;
+    LodePNGColorType ct=LCT_GREY;
     switch (img.fmt) {
         case FMT_I8: ct = LCT_GREY; break;
         case FMT_CI8: ct = LCT_PALETTE; break;

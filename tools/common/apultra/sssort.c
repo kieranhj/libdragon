@@ -311,7 +311,7 @@ ss_mintrosort(const sauchar_t *T, const saidx_t *PA,
               saidx_t *first, saidx_t *last,
               saidx_t depth) {
 #define STACK_SIZE SS_MISORT_STACKSIZE
-  struct { saidx_t *a, *b, c; saint_t d; } stack[STACK_SIZE];
+  struct { saidx_t *a, *b, c; saint_t d; } stack[STACK_SIZE+1];
   const sauchar_t *Td;
   saidx_t *a, *b, *c, *d, *e, *f;
   saidx_t s, t;
@@ -666,7 +666,7 @@ ss_swapmerge(const sauchar_t *T, const saidx_t *PA,
       *(b) = ~*(b);\
     }\
   } while(0)
-  struct { saidx_t *a, *b, *c; saint_t d; } stack[STACK_SIZE];
+  struct { saidx_t *a, *b, *c; saint_t d; } stack[STACK_SIZE+1];
   saidx_t *l, *r, *lm, *rm;
   saidx_t m, len, half;
   saint_t ssize;

@@ -1,8 +1,10 @@
 BUILD_DIR=build
 include $(N64_INST)/include/n64.mk
 
-MOVIE_FILE=caminandes.ogv
-MOVIE_URL=https://archive.org/download/CaminandesLlamigos/Caminandes_%20Llamigos-1080p.ogv
+#MOVIE_FILE=caminandes.ogv
+#MOVIE_URL=https://archive.org/download/CaminandesLlamigos/Caminandes_%20Llamigos-1080p.ogv
+MOVIE_FILE=bunny.ogv
+MOVIE_URL=https://upload.wikimedia.org/wikipedia/commons/d/d8/Big_buck_bunny_mcu.ogv
 DFS_FILES=filesystem/movie.m1v filesystem/movie.wav64
 
 src = videoplayer.c

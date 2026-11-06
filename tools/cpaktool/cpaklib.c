@@ -89,6 +89,8 @@ joypad_accessory_error_t joypad_accessory_xfer(joypad_port_t port, joypad_access
     } else {
         assert(0 && "Invalid xfer type");
     }
+
+    return JOYPAD_ACCESSORY_ERROR_UNKNOWN;
 }
 
 //

@@ -25,15 +25,18 @@ int main(void) {
 	// let user increase it.
 	mixer_ch_set_limits(CHANNEL_MUSIC, 0, 128000, 0);
 
-	wav64_t sfx_cannon, sfx_laser, sfx_monosample;
+	wav64_t sfx_cannon, sfx_laser, sfx_monosample, music_push;
 
-	wav64_open(&sfx_cannon, "rom:/cannon.wav64");
+	wav64_open(&sfx_cannon, "rom:/ArchieShaderToy_demoB.wav64");
 	
-	wav64_open(&sfx_laser, "rom:/laser.wav64");
+	wav64_open(&sfx_laser, "rom:/ArchieShaderToy_demoC.wav64");
 	wav64_set_loop(&sfx_laser, true);
 
-	wav64_open(&sfx_monosample, "rom:/monosample8.wav64");
+	wav64_open(&sfx_monosample, "rom:/acid.wav64");
 	wav64_set_loop(&sfx_monosample, true);
+
+    wav64_open(&music_push, "rom:/particle.wav64");
+	wav64_set_loop(&music_push, true);
 
 	bool music = false;
 	int music_frequency = sfx_monosample.wave.frequency;
@@ -54,11 +57,14 @@ int main(void) {
 		joypad_buttons_t ckeys = joypad_get_buttons_pressed(JOYPAD_PORT_1);
 
 		if (ckeys.a) {
-			wav64_play(&sfx_cannon, CHANNEL_SFX1);
+			wav64_play(&sfx_cannon, CHANNEL_MUSIC);
 		}
 		if (ckeys.b) {
-			wav64_play(&sfx_laser, CHANNEL_SFX2);
-			mixer_ch_set_vol(CHANNEL_SFX2, 0.25f, 0.25f);
+			wav64_play(&sfx_laser, CHANNEL_MUSIC);
+		//	mixer_ch_set_vol(CHANNEL_SFX2, 0.25f, 0.25f);
+		}
+		if (ckeys.c_up) {
+			wav64_play(&music_push, CHANNEL_MUSIC);
 		}
 		if (ckeys.z) {
 			music = !music;
@@ -81,7 +87,7 @@ int main(void) {
 		ckeys = joypad_get_buttons_released(JOYPAD_PORT_1);
 
 		if (ckeys.b) {
-			mixer_ch_stop(CHANNEL_SFX2);
+		//	mixer_ch_stop(CHANNEL_SFX2);
 		}
 
 		// Check whether one audio buffer is ready, otherwise wait for next
